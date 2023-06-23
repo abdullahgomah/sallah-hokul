@@ -1,0 +1,70 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/css/master.css' %}">
+
+
+    <style>
+
+        body {
+            background: url({% static 'assets/imgs/background.jpg' %});
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center center; 
+            background-repeat:  no-repeat;
+        }
+
+
+    </style>
+
+
+
+    
+    {% block stylesheets %}
+        
+    {% endblock stylesheets %}
+        
+
+    <title>
+        
+        {% block title %}
+            
+        {% endblock title %}
+            
+    </title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <h1>
+                    <a href="index.html" class="normal-text">
+                        سلة الحقول
+                    </a>
+                </h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="" class="list-item">الرئيسية</a></li>
+                    <li><a href="frameworks.html" class="list-item">قواعد البيانات</a></li>
+                    <li><a href="" class="list-item btn btn-solid-light">تسجيل دخول</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    
+    {% block content %}
+        
+    {% endblock content %}
+        
+
+
+</body>
+</html>

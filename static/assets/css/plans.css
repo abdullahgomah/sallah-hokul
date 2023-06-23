@@ -1,0 +1,12 @@
+.item {
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    filter: drop-shadow(2px 4px 20px #12121250);
+}
+
+.item a:last-of-type {
+    margin: 1rem 0; 
+}
