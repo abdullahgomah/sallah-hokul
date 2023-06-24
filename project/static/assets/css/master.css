@@ -26,10 +26,6 @@ h2 {
 }
 
 
-body {
-
-}
-
 body::before {
     content:  "" ;
     min-width: 100vw; 
@@ -168,7 +164,34 @@ section {
 }
 
 
+/* MESSAGE STYLING */
+.errorlist  li {
 
+    list-style: none;
+    background: #f7d7da;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+    
+}
+
+/* INPUT STYLING */
+
+input[type=text], input[type=password], input[type=email] {
+    border-radius: 15px;
+    border: none; 
+
+    padding: .4rem 1rem;
+    filter: drop-shadow(2px 4px 10px #12121280);
+    width: 300px;
+    max-width: 100vw !important;
+}
+
+/* A HREF Styling */
+
+a { 
+    color: #dfe6e9;
+    transition: color .4s ease-in-out;
+}
 
 
 @media (max-width: 575.98px) {  

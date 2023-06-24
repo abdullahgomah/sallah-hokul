@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    الملف الشخصي
+{% endblock title %}
+    
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'assets/css/profile.css' %}">
+{% endblock stylesheets %}
+    
+
+{% block content %}
+    
+    
+    <section class="profile">
+
+        <div class="section__heading profile__intro">
+            <img src="./assets/imgs/profile.jpg" class="profile-pic" alt="">
+            <h2 class="section__heading__title">Noha Mohammed</h2>
+        </div>
+        
+    </section>
+
+
+    <section>
+        <div class="container">
+            
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="grid">
+                <div>
+                    <a href="" class="btn btn-solid-dark">تغيير كلمة المرور</a>
+                </div>
+                <div>
+                    <a href="" class="btn btn-solid-dark">تعديل الملف الشخصي</a>
+                </div>
+            </div>
+
+    </section>
+
+{% endblock content %}

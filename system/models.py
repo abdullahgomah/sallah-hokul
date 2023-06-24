@@ -7,6 +7,8 @@ class System(models.Model):
     name = models.CharField(verbose_name="الاسم", max_length=100)
     img = models.ImageField(upload_to='systems/logos/', verbose_name="صورة لوجو النظام")
 
+    overview = models.TextField(null=True, blank=True, verbose_name="ملخص سريع") 
+
     slug = models.SlugField(max_length=200, verbose_name="اسم الرابط", null=True, blank=True, allow_unicode=True)  
 
     def __str__(self):
@@ -44,5 +46,6 @@ class Field(models.Model):
         verbose_name = ("حقل")
         verbose_name_plural = ("الحقول")
 
-    
+    def __str__(self):
+        return f'{self.system} | {self.f_type}'
 

@@ -40,7 +40,7 @@
                 
                 {% for system in systems %}
                     <div class="item framework">
-                        <a href="#">
+                        <a href="{% url 'system:framework-details' system.slug %}">
                             <!-- <img src="{% static './assets/imgs/django.png' %}" alt=""> -->
                             <img src="{{system.img.url}}" alt="">
                         </a>

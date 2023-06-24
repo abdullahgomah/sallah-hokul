@@ -43,16 +43,22 @@
         <div class="container">
             <div class="logo-container">
                 <h1>
-                    <a href="index.html" class="normal-text">
+                    <a href="{% url 'pages:index' %}" class="normal-text">
                         سلة الحقول
                     </a>
                 </h1>
             </div>
             <nav>
                 <ul>
-                    <li><a href="" class="list-item">الرئيسية</a></li>
-                    <li><a href="frameworks.html" class="list-item">قواعد البيانات</a></li>
-                    <li><a href="" class="list-item btn btn-solid-light">تسجيل دخول</a></li>
+                    <li><a href="{% url 'pages:index' %}" class="list-item">الرئيسية</a></li>
+                    <li><a href="{% url 'system:list-frameworks' %}" class="list-item">قواعد البيانات</a></li>
+                    <li><a href="{% url 'pages:plans' %}" class="list-item">الأسعار</a></li>
+                    
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'users:profile' %}" class="list-item">الملف الشخصي</a></li>
+                    {% else %}
+                        <li><a href="{% url 'account_login' %}" class="list-item btn btn-solid-light">تسجيل دخول</a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>
