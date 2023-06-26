@@ -10,39 +10,106 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{% static 'assets/css/profile.css' %}">
+    <style>
+    /* Apply border radius to the select element */
+    select {
+        border-radius: 5px;
+        width: 100%;
+        border: none;
+        padding: .5rem; 
+        max-width: 100%;
+    }
+
+    /* Apply light background color to the select element */
+    select {
+        background-color: #f2f2f2;
+    }
+
+    /* Apply light background color to the selected options */
+    option {
+        padding: .5rem 0 ;
+    }
+    option[selected] {
+        background-color: #748A8C;
+        color: var(--primary-color)
+    }
+
+    
+    input[type=text], input[type=password], input[type=email], input[type=number] {
+        min-width: 100% !important;
+    }
+
+
+    </style>
+
 {% endblock stylesheets %}
     
 
 {% block content %}
     
-    
-    <section class="profile">
-
-        <div class="section__heading profile__intro">
-            <img src="./assets/imgs/profile.jpg" class="profile-pic" alt="">
-            <h2 class="section__heading__title">Noha Mohammed</h2>
-        </div>
-        
-    </section>
-
 
     <section>
-        <div class="container">
-            
+        <div class="section__heading">
+            <h1 class="section__heading__title">الملف الشخصي</h1>
+            <p class="section__heading__description"></p>
         </div>
-    </section>
-
-    <section>
         <div class="container">
+
+            <form method="POST" enctype="multipart/form-data">
             <div class="grid">
-                <div>
-                    <a href="" class="btn btn-solid-dark">تغيير كلمة المرور</a>
-                </div>
-                <div>
-                    <a href="" class="btn btn-solid-dark">تعديل الملف الشخصي</a>
-                </div>
-            </div>
+                <div class="item">
+                    <div class="form-container">
+                    
+                            {% csrf_token %}
+                            <div class="field">
+                                <p>{{user_form.username.label}}</p>
+                                {{ user_form.username }}
+                            </div>
+                            <div class="field">
+                                <p>{{user_form.first_name.label}}</p>
+                                {{user_form.first_name}}
+                            </div>
+                            <div class="field">
+                                <p>{{user_form.last_name.label}}</p>
+                                {{user_form.last_name}}
+                            </div>
 
+                    </div>
+                </div>
+                <div class="item">
+                        <div class="field">
+                            <p>{{profile_form.favourite_systems.label}}</p>
+                            {{profile_form.favourite_systems}}
+                        </div>
+                        <div class="grid">
+                            <div class="item">
+                                <div class="field">
+                                    <p>{{profile_form.u_type.label}}</p>
+                                    {{profile_form.u_type}}
+                                </div>
+                            </div>
+                            <div class="item" >
+                                <div class="field" >
+                                    <p>{{profile_form.age.label}}</p>
+                                    {{profile_form.age}}
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <section>
+                    <div class="container">
+                        <button class="btn btn-solid-light" type="submit">تحديث الملف الشخصي</button>
+                        <a href="{% url 'account_change_password' %}" class="btn btn-solid-dark">تغيير كلمة المرور</a>
+                    </div>
+                </section>
+            </form>
+
+        </div>
     </section>
+
 
 {% endblock content %}
