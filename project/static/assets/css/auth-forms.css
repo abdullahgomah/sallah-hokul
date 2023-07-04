@@ -1,0 +1,10 @@
+
+form > p * {
+    display: block;
+}
+form >p {
+    margin-bottom: 1rem;
+}
+input[type=text], input[type=password], input[type=email], input[type=number] {
+    min-width: 50%;
+}

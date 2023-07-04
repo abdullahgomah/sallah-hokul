@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block title %}
+    {{plan}}
+{% endblock title %}
+    
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'assets/css/plans.css' %}">
+{% endblock stylesheets %}
+
+
+
+{% block content %}
+    
+    
+    <section>
+        <div class="section__heading">
+            <h1 class="section__heading__title">{{plan}}</h1>
+            <p class="section__heading__description">{{plan.description}}</p>
+        </div>
+
+        <div class="container">
+            <div class="grid">
+                
+                <div class="item">
+                    <h2>{{plan.price}}$</h2>
+                    <h1>{{plan.name}}</h1>
+                    <p>{{plan.description}}</p>
+                    <a href="#" class="btn btn-solid-light">تواصل مع الدعم الفني</a>
+
+                    <div id="paypal-button-container"></div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <script src="https://www.paypal.com/sdk/js?client-id={{paypal.client_id}}"></script>
+
+
+    <script>
+        function initPayPalButton() {
+          paypal.Buttons({
+            style: {
+              shape: 'rect',
+              color: 'gold',
+              layout: 'vertical',
+              label: 'paypal',
+              
+            },
+            createOrder: function(data, actions) {
+              return actions.order.create({
+                purchase_units: [{"amount":{"currency_code":"{{paypal.currency}}",
+                
+                "value": '{{plan.price}}'
+              
+              }}]
+              });
+            },
+            onApprove: function(data, actions) {
+              return actions.order.capture().then(function(orderData) {
+                
+                // Full available details
+                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+      
+                // Show a success message within this page, e.g.
+                const element = document.getElementById('paypal-button-container');
+                element.innerHTML = '';
+                element.innerHTML = '<h3>Thank you for your payment!</h3>';
+            
+                // here i'm creating ajax request to create a subscription for the user 
+      
+                // Or go to another URL:  actions.redirect('thank_you.html');
+                
+              });
+            },
+      
+            onError: function(err) {
+              console.log(err);
+            }
+          }).render('#paypal-button-container');
+        }
+        initPayPalButton();
+    </script>
+      
+
+{% endblock content %}
+    

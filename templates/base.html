@@ -52,7 +52,7 @@
                 <ul>
                     <li><a href="{% url 'pages:index' %}" class="list-item">الرئيسية</a></li>
                     <li><a href="{% url 'system:list-frameworks' %}" class="list-item">قواعد البيانات</a></li>
-                    <li><a href="{% url 'pages:plans' %}" class="list-item">الأسعار</a></li>
+                    <li><a href="{% url 'subscriptions:plans' %}" class="list-item">الأسعار</a></li>
                     
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'users:profile' %}" class="list-item">الملف الشخصي</a></li>

@@ -10,6 +10,3 @@ def index(request):
     return render(request, 'pages/index.html', context)
 
 
-def plans(request):
-    context = {} 
-    return render(request, 'pages/plans.html', context)

@@ -26,21 +26,17 @@
 
         <div class="container">
             <div class="grid">
+                
+                {% for plan in plans %}
                 <div class="item">
-                    <h2>25$</h2>
-                    <h1>الأساسية ⭐</h1>
+                    <h2>{{plan.price}}$</h2>
+                    <h1>{{plan.name}}</h1>
+                    <p>{{plan.description}}</p>
                     <a href="#" class="btn btn-solid-light">اشترك الآن!</a>
                 </div>
-                <div class="item">
-                    <h2>25$</h2>
-                    <h1>الأفضل 🔥🔥</h1>
-                    <a href="#" class="btn btn-solid-light">اشترك الآن!</a>
-                </div>
-                <div class="item">
-                    <h2>25$</h2>
-                    <h1>الفرق 👨</h1>
-                    <a href="#" class="btn btn-solid-light">اشترك الآن!</a>
-                </div>
+                {% endfor %}
+                    
+
             </div>
         </div>
 
