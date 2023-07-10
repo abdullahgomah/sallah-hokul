@@ -6,6 +6,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
     <link rel="stylesheet" href="{% static 'assets/css/master.css' %}">
 
 
@@ -39,7 +46,7 @@
     </title>
 </head>
 <body>
-    <header>
+    <!-- <header>
         <div class="container">
             <div class="logo-container">
                 <h1>
@@ -62,15 +69,59 @@
                 </ul>
             </nav>
         </div>
-    </header>
+    </header> -->
 
 
+    <nav>
+        <div class="container">
+            <div class="logo-container">
+                <h2 class="logo">
+                    <a href="{% url 'pages:index' %}">سلة الحقول</a>
+                </h2>
+            </div>
+            <ul>
+            <li><a href="{% url 'pages:index' %}" class="list-item">الرئيسية</a></li>
+            <li><a href="{% url 'system:list-frameworks' %}" class="list-item">قواعد البيانات والأنظمة</a></li>
+            <li><a href="{% url 'subscriptions:plans' %}" class="list-item">الأسعار</a></li>
+            <li><a href="{% url 'pages:about' %}" class="list-item">نبذه عنا</a></li>
+            </ul>
+    
+            
+            {% if user.is_authenticated %}
+            <!-- responsive drop down for profile  -->
+            <a href="{% url 'users:profile' %}" class="btn btn-solid-light">الملف الشخصي</a>
+            <!-- <a href="{% url 'users:profile' %}" class="btn btn-solid-light">{{user}}</a> -->
+            {% else %}
+            <div class="buttons">
+                <a href="{% url 'account_login' %}" class="btn btn-outline-light">دخول</a>
+                <a href="{% url 'account_signup' %}" class="btn btn-solid-light">تسجيل جديد</a>
+            </div>
+
+            {% endif %}
+                
+
+    
+            <div class="menu">
+            <a href="#"><i class="fa-solid fa-bars"></i></a>
+            </div>
+        </div>
+    </nav>
+    
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     
     {% block content %}
         
     {% endblock content %}
-        
+    
+    <script>
 
+        let menuButton = document.querySelector(".menu a") ; 
+
+        menuButton.addEventListener('click', () => {
+            let ul = document.querySelector('nav ul').classList.toggle('show')
+        })
+
+    </script>
 
 </body>
 </html>

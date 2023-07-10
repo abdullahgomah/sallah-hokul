@@ -24,17 +24,18 @@
         <div class="section__heading">
             <h1 class="section__heading__title">{{system}}</h1>
             <p class="section__heading__description">
-                Django is a Python web framework that follows the MVC architectural pattern, providing a robust set of tools for building web applications efficiently.
+                {{system.overview}}
             </p>
         </div>
         <div class="container">
             <div class="grid">
                 
-                {% for system in system.field_set.all %}
+                {% for field in system.field_set.all %}
                     <div class="item framework">
-                        <h2>{{system.f_type.name}}</h2>
-                        <p>{{system.syntax|truncatechars:10}}</p>
-                        <button class="btn btn-lg btn-solid-dark">نسخ الكود</button>
+                        <h2>{{field.f_type}}</h2>
+                        <p>{{field.syntax|truncatechars:10}}</p>
+                        <p hidden id="field_syntax">{{field.syntax}}</p>
+                        <button class="btn btn-lg btn-solid-dark btn-copy">نسخ الكود</button>
                     </div>                    
                 {% endfor %}
                     
@@ -52,6 +53,25 @@
     </section>
 
     <!-- Javascript Code for Copy Function -->
+
+
+    <script>
+
+        let btnCopy = document.querySelectorAll('.btn-copy');
+        
+        btnCopy.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                let textToCopy = btn.parentElement.querySelector('#field_syntax').textContent
+                let textArea = document.createElement('textarea'); 
+                document.body.appendChild(textArea); 
+                textArea.value = textToCopy; 
+                textArea.select(); 
+                document.execCommand('copy'); 
+                document.body.removeChild(textArea); 
+            })
+        })
+
+    </script>
 
 
 

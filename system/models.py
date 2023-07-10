@@ -38,7 +38,9 @@ class Field(models.Model):
 
     system = models.ForeignKey(System, verbose_name="قاعدة البيانات", on_delete=models.CASCADE)
 
-    f_type = models.ForeignKey(Type, verbose_name=("نوع الحقل"), on_delete=models.SET_DEFAULT, default='غير معروف') 
+    # f_type = models.ForeignKey(Type, verbose_name=("نوع الحقل"), on_delete=models.SET_DEFAULT, default='غير معروف') 
+
+    f_type = models.CharField(max_length=75, verbose_name="نوع الحقل")
 
     syntax = models.TextField(verbose_name="الجملة الأساسية (Syntax)")
 

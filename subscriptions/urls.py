@@ -6,4 +6,5 @@ app_name ='subscriptions'
 urlpatterns = [
     path('pricing/', plans, name='plans'),
     path('pricing/<str:plan>/', plan_details, name='plan-details'), 
+    path('create_subscription/', create_subscription, name='create-subscription'), 
 ]

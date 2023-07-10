@@ -26,6 +26,15 @@ h2 {
 }
 
 
+@keyframes showMenu {
+    from {
+        left: -200px; 
+    } to {
+        left: 0;
+    }
+}
+
+
 body::before {
     content:  "" ;
     min-width: 100vw; 
@@ -44,17 +53,68 @@ body::before {
 
 /* HEADER STYLE */
 
-header {
+nav {
     background-color: var(--primary-color);
-    min-height: 80px;
-    padding: 1rem;
+    height: 80px;
 }
 
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+nav a, nav h2 a {
+    text-decoration: none !important;
+}
+
+nav .container {
     height: 100%;
+    display: flex;
+    padding: 0 1rem;
+    align-items: center;
+}
+
+nav .logo-container {
+    flex: 1;
+    /* margin-left: 3rem; */
+}
+
+
+nav .logo-container .logo {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+  
+nav  ul {
+    flex: 2;
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    gap: 2rem;
+}
+
+nav .list-item {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+nav .buttons {
+    flex: 1;
+    min-width: fit-content;
+}
+
+nav .buttons a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.menu {
+    margin-right: 1rem;
+    display: none;
+}
+
+.menu i {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+}
+
+.menu a {
+    cursor: pointer;
 }
 
 .normal-text {
@@ -62,30 +122,19 @@ header .container {
     text-decoration: none;
 }
 
-header .container nav {flex:0.50}
 
-header .container nav ul {
-    display: flex;
-    justify-content: space-around;
-    list-style: none;
-}
-
-.list-item {
-    text-decoration: none; 
-    color: var(--secondary-color)
-}
 
 
 /* BUTTON STYLE */
 
 .btn {
     display: inline-block;
-    padding: .25rem 1rem ;
+    padding: .25rem 1.25rem ;
     border-radius: 30px;
     cursor: pointer; 
     text-decoration: none;
     outline: none;
-    bordeR: none; 
+    bordeR: none;
 }
 
 .btn-solid-light {
@@ -96,6 +145,18 @@ header .container nav ul {
 .btn-solid-dark {
     background: var(--primary-color);
     color: var(--secondary-color);
+}
+
+.btn-outline-dark {
+    background: transparent;
+    border: 2px solid #1e1e1e;
+    color: #1e1e1e !important;
+}
+
+.btn-outline-light {
+    background: transparent;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color); 
 }
 
 .btn-lg {
@@ -241,7 +302,12 @@ form .field:last-child {
         width: 100%;
     }
 
-
+    nav .buttons {
+        display: none;
+    }
+      nav ul {
+        width: 100%;
+    }
 
 }
 
@@ -260,6 +326,47 @@ form .field:last-child {
     .container {
         width: 770px;
     }
+}
+
+@media screen and (max-width: 920px) {
+
+    .logo-container {
+        flex: 0.5;
+      }
+    .buttons {
+        flex: 2;    
+    }
+    .menu {
+        display: block;
+    }
+    nav ul {
+        position: absolute;
+        background: var(--primary-color);
+        top: 80px;
+        left: -200px;
+        line-height: 2.6;
+        width: 200px;
+        max-width: 100%;
+        display: none;
+    }
+    nav ul.show {
+        z-index: 10000;
+        display: block;
+        animation: showMenu 0.5s forwards;
+    }
+
+    nav ul li {
+        margin-bottom: 0.4rem;
+        padding: 0.5rem 0.5rem;
+        transition: all 0.2s ease-in-out;
+    }
+    nav ul li:hover {
+        background: #1e1e1e;
+    }
+    nav ul li:hover > a {
+        color: #f9f9f9;
+    }
+
 }
 
 

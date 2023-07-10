@@ -1,16 +1,22 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserChangeForm 
 from .forms import UpdateProfileForm, UpdateUserForm
 from .models import Profile
+from subscriptions.views import check_plan
+from subscriptions.models import Subscription
 
 # Create your views here.
 
 @login_required()
 def profile(request):
-    user = request.user 
+    user = request.user
     profile = Profile.objects.get(user=user) 
 
+    try:
+        Subscription.objects.get(user=user) 
+    except: 
+        return redirect('subscriptions:plans') 
 
 
     if request.POST: # Save

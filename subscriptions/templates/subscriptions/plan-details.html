@@ -27,16 +27,27 @@
         <div class="container">
             <div class="grid">
                 
-                <div class="item">
-                    <h2>{{plan.price}}$</h2>
-                    <h1>{{plan.name}}</h1>
-                    <p>{{plan.description}}</p>
-                    <a href="#" class="btn btn-solid-light">تواصل مع الدعم الفني</a>
-
-                    <div id="paypal-button-container"></div>
-
-                </div>
-
+              
+              {% if user.subscription %}
+                
+              <div class="item" style="height: 300px;">
+                <h2>أنت مشترك في الباقة "{{user.subscription.plan.name}}"</h2>
+                <h4>منذ  {{user.subscription.start_date}} إلى {{user.subscription.end_date}}</h4>
+                <a href="{% url 'pages:index' %}" class="btn btn-outline-light">العودة للصفحة الرئيسية</a>
+              </div>
+              
+              {% else %}
+              <div class="item">
+                <h2>{{plan.price}}$</h2>
+                <h1>{{plan.name}}</h1>
+                <p>{{plan.description}}</p>
+                <a href="#" id="btn-create-subscription" class="btn btn-solid-light">تواصل مع الدعم الفني</a>
+                
+                <div id="paypal-button-container"></div>
+                
+              </div>
+              {% endif %}
+              
             </div>
         </div>
 
@@ -47,6 +58,16 @@
 
 
     <script>
+
+
+
+        // my ajax request 
+
+        $("#btn-create-subscription").click(function () {
+
+        })
+
+
         function initPayPalButton() {
           paypal.Buttons({
             style: {
@@ -71,12 +92,26 @@
                 // Full available details
                 console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
       
-                // Show a success message within this page, e.g.
-                const element = document.getElementById('paypal-button-container');
-                element.innerHTML = '';
-                element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+                var start_date = new Date() 
             
-                // here i'm creating ajax request to create a subscription for the user 
+                $.ajax({
+                    url: "{% url 'subscriptions:create-subscription' %}",
+                    method: 'POST', 
+                    data: {
+                        plan: '{{plan}}',
+                        start_date: Date.now(), 
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    }, success: (reponse) => {
+                        // alert('subscription has been created')
+                        $('.item').html(reponse) 
+                    }, error: function (xhr, error) {
+                        console.log(xhr)
+                        console.log(error) 
+                    }
+                })
+
+
       
                 // Or go to another URL:  actions.redirect('thank_you.html');
                 

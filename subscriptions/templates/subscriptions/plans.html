@@ -32,7 +32,7 @@
                     <h2>{{plan.price}}$</h2>
                     <h1>{{plan.name}}</h1>
                     <p>{{plan.description}}</p>
-                    <a href="#" class="btn btn-solid-light">اشترك الآن!</a>
+                    <a href="{% url 'subscriptions:plan-details' plan.name %}" class="btn btn-solid-light">اشترك الآن!</a>
                 </div>
                 {% endfor %}
                     
