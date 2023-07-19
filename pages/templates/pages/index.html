@@ -20,12 +20,14 @@
     <main>
         <div class="container">
             <div>
-                <h1>قاعدة بيانات لمشروعك في 10 دقائق !</h1>
+                <!-- <h1>قاعدة بيانات لمشروعك في 10 دقائق !</h1> -->
+                <h1>
+                    {{main_info.heading}}
+                </h1>
                 <p>
-                    توفر لك منصة "سلة الحقول" جميع حقول قواعد البيانات لأشهر أنظمة قواعد البيانات والـ ORM الموجودة
-
+                    {{main_info.sub_heading}}
                 </p>
-                <a href="{% url 'subscriptions:plans' %}" class="btn btn-solid-dark btn-lg">اشترك الآن</a>
+                <a href="{{main_info.btn_link}}" class="btn btn-solid-dark btn-lg">{{main_info.btn_text}}</a>
             </div>
         </div>
     </main>
