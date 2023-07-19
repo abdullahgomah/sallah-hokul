@@ -51,8 +51,12 @@
         <div class="section__heading">
             <h1 class="section__heading__title">الملف الشخصي</h1>
             <p class="section__heading__description">
+                
+                {% if user.subscription %}
                 <h2>أنت مشترك في الباقة "{{user.subscription.plan.name}}"</h2>
                 <h4>منذ  {{user.subscription.start_date}} إلى {{user.subscription.end_date}}</h4>
+                {% endif %}
+                    
                 <a href="{% url 'account_logout' %}" class="btn btn-solid-dark">تسجيل خروج</a>
             </p>
         </div>

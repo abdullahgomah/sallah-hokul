@@ -13,10 +13,10 @@ def profile(request):
     user = request.user
     profile = Profile.objects.get(user=user) 
 
-    try:
-        Subscription.objects.get(user=user) 
-    except: 
-        return redirect('subscriptions:plans') 
+    # try:
+    #     Subscription.objects.get(user=user) 
+    # except: 
+    #     return redirect('subscriptions:plans') 
 
 
     if request.POST: # Save
