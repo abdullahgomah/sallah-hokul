@@ -28,7 +28,8 @@ h2 {
 
 @keyframes showMenu {
     from {
-        left: -200px; 
+        /* left: -200px;  */
+        left:0; 
     } to {
         left: 0;
     }
@@ -303,6 +304,9 @@ form .field:last-child {
     }
 
     nav .buttons {
+        /* display: none; */
+    }
+    nav .buttons a:nth-child(2) {
         display: none;
     }
       nav ul {
