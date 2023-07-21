@@ -19,7 +19,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="المستخدم")
-    favourite_systems = models.ManyToManyField(System, related_name='profiles', verbose_name="التقنيات المفضلة", null=True, blank=True )
+    favourite_systems = models.ManyToManyField(System, related_name='profiles', verbose_name="التقنيات المفضلة", blank=True )
     age = models.IntegerField(default=16, verbose_name="العمر") 
     u_type = models.CharField(choices=TYPE_CHOICES, verbose_name="النوع", max_length=20, null=True, blank=True) 
     
