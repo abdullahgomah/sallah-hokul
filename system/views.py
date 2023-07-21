@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import * 
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -13,6 +14,7 @@ def list_frameworks(request):
     return render(request, 'system/frameworks.html', context)
 
 
+@login_required
 def framework_details(request, slug): 
     system = System.objects.get(slug=slug) 
 
